@@ -214,7 +214,14 @@ plot.grades <- function(fqc){
     rect( x, y, x+1, y+1, col=cols[grades] )
 }
        
-        
+plot.read.n <- function(fqc, sm.lab=NULL, ...){
+    counts <- sapply(fqc, function(x){
+        m <- x[['Basic Statistics']]
+        i <- m[,1] == 'Total Sequences'
+        as.numeric(m[i, 'Value'])})
+    barplot( counts, names.arg=sm.lab, ... )
+    invisible( counts )
+}
 
 
 
